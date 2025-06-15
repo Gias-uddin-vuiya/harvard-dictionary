@@ -1,6 +1,7 @@
 
 from flask import Flask, flash, redirect, render_template, session, request
 from flask_session import Session
+from project import fetch_definition 
 # configure application
 app = Flask(__name__)
 
@@ -23,5 +24,14 @@ def after_request(response):
 
 @app.route("/")
 def home():
-    
     return render_template("home.html")
+
+
+@app.route("/search", methods=["POST"])
+def search():
+    word = request.form.get("word")
+    print(f"Searching for: {word}")  # Debugging output
+    if not word:
+        return "Please enter a word.", 400
+    result = fetch_definition(word)  # Get word definition, etc.
+    return render_template("home.html", word=word, result=result)

@@ -5,11 +5,19 @@ Home
 {% endblock %}
 
 {% block main %}
-    <form action="search" method="POST" class="form-inline">
+    <form action="/search" method="POST" class="form-inline">
         <div class="word-serch">
             <input type="text" name="word" placeholder="Search words.. by VocabBuilder" autocomplete="off">
             <button type="submit">Search</button>
         </div>
     </form>
     
+    {% if result %}
+        <h2>Result for "{{ word }}"</h2>
+        <p><strong>Definition:</strong> {{ result.definition }}</p>
+        <p><strong>Example:</strong> {{ result.example }}</p>
+        
+    {% endif %}
+
+
 {% endblock %}

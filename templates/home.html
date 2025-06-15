@@ -5,5 +5,11 @@ Home
 {% endblock %}
 
 {% block main %}
-    <h1 class="display-4">Welcome to  VocabBuilder</h1>
+    <form action="search" method="POST" class="form-inline">
+        <div class="word-serch">
+            <input type="text" name="word" placeholder="Search words.. by VocabBuilder" autocomplete="off">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+    
 {% endblock %}

@@ -1,0 +1,28 @@
+
+form .word-serch {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+     font-size: 18px;
+}
+
+form .word-serch input{
+    width: 30%;
+    padding: 8px 10px;
+    border: none;
+    border: 1px solid #a6c9fe;
+    outline: none;
+   
+}
+
+form .word-serch button{
+    padding: 8px 15px;
+    /* margin-left: 10px; */
+    background-color: #a6c9fe;
+    border: none;
+    /* border-radius: 5px; */
+    color: white;
+    cursor: pointer;
+}

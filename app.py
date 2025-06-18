@@ -34,4 +34,5 @@ def search():
     if not word:
         return "Please enter a word.", 400
     result = fetch_definition(word)  # Get word definition, etc.
+    print(result)
     return render_template("home.html", word=word, result=result)

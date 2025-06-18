@@ -13,10 +13,20 @@ Home
     </form>
     
     {% if result %}
-        <h2>Result for "{{ word }}"</h2>
-        <p><strong>Definition:</strong> {{ result.definition }}</p>
-        <p><strong>Example:</strong> {{ result.example }}</p>
+    <div class="search-result">
+        <p><strong>word:</strong> {{ result.word }}</p>
+        <p>{{ result.part_of_speech }}</p>
+        <div class="sound-and-ipasymbol">
+            <audio controls>
+                <source src="{{ result.audio_url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p> {{ result.ipa }}</p>
+        </div>
+    </div>
         
+    <p><strong>Definition:</strong> {{ result.definition }}</p>
+    <p><strong>Example:</strong> {{ result.example }}</p>
     {% endif %}
 
 

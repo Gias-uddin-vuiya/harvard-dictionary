@@ -34,6 +34,7 @@ form .word-serch button{
     margin: 10px auto;
     padding: 10px;
     border: 1px solid #a6c9fe;
+    border-radius: 6px;
     background-color: aquamarine;
 }
 

@@ -1,95 +1,57 @@
 
 import requests
+import json
+
+APP_ID = "d5e1b678"
+APP_KEY = "6a755bb44029f84a6be575f213171723"
+
+# https://dictionaryapi.dev/
 
 
 def main():
     print("This is the main function of the project module.")
 
 
-def fetch_definition(word):
-    # faching data
-    try:
-        url = f"https://dictionaryapi.com/api/v3/references/learners/json/{word}?key=af7a50c6-6a2f-4855-89b0-34938adbd8b4"
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
 
-        # Handle suggestions (if result is just a list of strings)
-        if not data or isinstance(data[0], str):
+def get_entry(word):
+   
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word.lower()}"
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        if not data:
+            return {"status": "error", "message": "No data found for the word."}
+        
+        word = data[0].get("word", "")
+        definition = data[0].get("meanings", [{}])[0].get("definitions", [{}])[0].get("definition", "")
+        examples = data[0].get("meanings", [{}])[0].get("definitions", [{}])[0].get("example", "")
+        part_of_speech = data[0].get("meanings", [{}])[0].get("partOfSpeech", [{}])
+        synonyms = data[0].get("meanings", [{}])[0].get("synonyms", [])
+        antonyms = data[0].get("meanings", [{}])[0].get("antonyms", [])
+        ipa = data[0].get("phonetic", "")
+        audio_url = data[0].get("phonetics", [{}])[0].get("audio", "")
+        try:
+            
             return {
                 "word": word,
-                "definition": "No exact match found. Did you mean: " + ", ".join(data[:5]),
-                "example": "",
-                "part_of_speech": "",
-                "ipa": "",
-                "audio_url": "",
-                "status": "suggestion"
+                "definition": definition,
+                "examples": examples,
+                "part_of_speech": part_of_speech,
+                "synonyms": synonyms,
+                "antonyms": antonyms,
+                "ipa": ipa,
+                "audio_url": audio_url,
+                "status": "success"
             }
-
-        entry = data[0]
-
-        # Word
-        actual_word = entry.get("hwi", {}).get("hw", word)
-
-        # Part of speech
-        part_of_speech = entry.get("fl", "")
-
-        # IPA pronunciation
-        ipa = entry.get("hwi", {}).get("prs", [{}])[0].get("ipa", "")
-
-        # Audio
-        audio_code = entry.get("hwi", {}).get("prs", [{}])[0].get("sound", {}).get("audio", "")
-        audio_url = (
-            f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{audio_code[0]}/{audio_code}.mp3"
-            if audio_code else ""
-        )
-
-        # Definition
-        definitions = []
-        examples = []
-
-        if "def" in entry:
-            senses = entry["def"][0]["sseq"]
-            for s in senses:
-                for item in s:
-                    sense = item[1]
-
-                    definition = ""
-                    local_examples = []
-
-                    for dt in sense.get("dt", []):
-                        if dt[0] == "text":
-                            cleaned_def = dt[1].replace("{bc}", "").strip()
-                            definitions.append(cleaned_def)
-                        elif dt[0] == "vis":
-                            for ex in dt[1]:
-                                cleaned_ex = ex.get("t", "").replace("{it}", "").replace("{/it}", "").replace("{phrase}", "").replace("{/phrase}", "")
-                                local_examples.append(cleaned_ex)
-
-                    examples.extend(local_examples)
-
+        except Exception as e:
+            return {"status": f"error parsing data: {e}"}
+    else:
         return {
-            "word": actual_word,
-            "part_of_speech": part_of_speech,
-            "ipa": ipa,
-            "definition": definitions,
-            "example": examples,
-            "audio_url": audio_url,
-            "status": "success"
+            "status": f"API Error {response.status_code}",
+            "message": response.text
         }
 
-    except Exception as e:
-        print(f"Error: {e}")
-        return {
-            "word": word,
-            "definition": "Definition not found.",
-            "example": "",
-            "part_of_speech": "",
-            "ipa": "",
-            "audio_url": "",
-            "status": "error"
-        }
-    
 def translate_bengali(word):
     # Call LibreTranslate API
     pass

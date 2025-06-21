@@ -2,11 +2,6 @@
 import requests
 import json
 
-APP_ID = "d5e1b678"
-APP_KEY = "6a755bb44029f84a6be575f213171723"
-
-# https://dictionaryapi.dev/
-
 
 def main():
     print("This is the main function of the project module.")

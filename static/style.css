@@ -1,4 +1,10 @@
 
+/* navbar design */
+.navbar-brand img{
+    width: 100px;
+    margin-left: 10px;
+}
+
 form .word-serch {
     
     display: flex;

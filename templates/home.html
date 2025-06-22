@@ -10,11 +10,9 @@ Home
     </div>
 
 
-    <form action="/search" method="POST" class="form-inline">
-        <div class="word-serch">
-            <input type="text" name="word" placeholder="Search words.. by VocabBuilder" autocomplete="off">
-            <button type="submit">Search</button>
-        </div>
+    <form action="/search" method="POST" >
+        <input type="text" name="word" placeholder="Harvard Dictionary Search" autocomplete="off" required>
+        <button type="submit">Search</button>
     </form>
     
     {% if result %}

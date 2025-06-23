@@ -83,20 +83,56 @@ form button:hover {
     color: #333;
 }
 
-/* searching field design start here */
-.search-result{
-    margin: 10px auto;
-    padding: 10px;
-    border: 1px solid #a6c9fe;
-    border-radius: 6px;
-    background-color: aquamarine;
-}
+/* show data to ui */
 
-.sound-and-ipasymbol{
+.show-data {
+    margin-top: 50px;
+    padding: 20px 25px;
+}
+.show-result-to-ui {
     display: flex;
     justify-content: space-between;
+    padding: 20px 50px; 
+}
+
+.show-result-to-ui .left-sidebar {
+    /* border: 1px solid #ccc; */
+}
+
+.show-result-to-ui .left-sidebar .words {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.show-result-to-ui .left-sidebar img {
+    margin-top: -5px;
+}
+
+.show-result-to-ui .left-sidebar .word {
+    margin-top: 3px;
+    padding-left: 4px;
+    padding-right: 35px;
+    font-size: 24px;
+}
+
+
+.show-result-to-ui .left-sidebar .partOfSpeech {
+    margin-top: 6px;
+    padding-left: 0px;
+    font-size: 17px;
+    color: gray;
+}
+
+/* working with sound */
+.sound-and-symbol{
+    display: flex;
     align-items: center;
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
+    margin-top: 20px;
+}
+.sound-and-symbol img {
+    color: darkred;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 10px;
 }

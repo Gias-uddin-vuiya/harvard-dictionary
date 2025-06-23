@@ -5,36 +5,84 @@ Home
 {% endblock %}
 
 {% block main %}
-    <div class="search-msg">
-        <h1>Search Results</h1>
-    </div>
 
-
-    <form action="/search" method="POST" >
-        <input type="text" name="word" placeholder="Harvard Dictionary Search" autocomplete="off" required>
-        <button type="submit">Search</button>
-    </form>
-    
-    {% if result %}
-    <div class="search-result">
-        <p><strong>word:</strong> {{ result.word }}</p>
-        <p>{{ result.part_of_speech }}</p>
-        <div class="sound-and-ipasymbol">
-            <audio controls>
-                <source src="{{ result.audio_url }}" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            <p> {{ result.ipa }}</p>
+    <div class="main-section">
+        <div class="search-msg">
+            <h1>Search Results</h1>
         </div>
+    
+        <form action="/search" method="POST" >
+            <input type="text" name="word" placeholder="Harvard Dictionary Search" autocomplete="off" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="show-data">
+            <div class="msg-about-us">
+                <p>You must include at least one keyword to match in the content. Keywords must be at least 3 characters, and punctuation is ignored.</p>
+                <p><strong>We Suggest</strong></p>
+            </div>
+            <div class="show-result-to-ui">
+            <div class="left-sidebar">
+                <div class="words">
+                    <img src="{{ url_for('static', filename='images/dictionary-icon.png') }}" alt="book icon">
+                    <p class="word">Word</p>
+                    <p class="partOfSpeech">partofspeech</p>
+                </div>
+                <div class="sound-and-symbol">
+                  
+                    <img src="{{ url_for('static', filename='images/sound-icon.png') }}" alt="sound-icon"
+                    onclick="document.getElementById('word-audio').play();">
+
+                    <audio id="word-audio">
+                        <source src="https://api.dictionaryapi.dev/media/pronunciations/en/english-us.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p>/symbol/</p>
+                    
+                </div>
+                <div class="defination">
+                    <p>defination: this is the defination of the word</p>
+                </div>
+                <div class="more-info">
+                    <ul>
+                        <li>example</li>
+                        <li>synonyms</li>
+                        <li>antonyms</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right-sidebar">
+                <p><strong>Other result</strong></p>
+            </div>
+        </div>
+        </div>
+       
+        <h1><a href="https://library.harvard.edu/search?keywords=a">Harvard Library</a></h1>
+       
     </div>
-        
-    <p><strong>Definition:</strong> {{ result.definition }}</p>
-    <p><strong>Example:</strong> {{ result.examples }}</p>
-    <p><strong>synonyms:</strong> {{ result.synonyms }}</p>
-    <p><strong>antonyms:</strong> {{ result.antonyms }}</p>
-    {% endif %} 
 
     
+    
+        <!-- {% if result %}
+        <div class="search-result">
+            <p><strong>word:</strong> {{ result.word }}</p>
+            <p>{{ result.part_of_speech }}</p>
+            <div class="sound-and-ipasymbol">
+                <audio controls>
+                    <source src="{{ result.audio_url }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p> {{ result.ipa }}</p>
+            </div>
+        </div>
+            
+        <p><strong>Definition:</strong> {{ result.definition }}</p>
+        <p><strong>Example:</strong> {{ result.examples }}</p>
+        <p><strong>synonyms:</strong> {{ result.synonyms }}</p>
+        <p><strong>antonyms:</strong> {{ result.antonyms }}</p>
+        {% endif %} 
+    
+     -->
 
 
 {% endblock %}

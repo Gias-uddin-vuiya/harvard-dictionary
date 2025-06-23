@@ -16,17 +16,20 @@ Home
             <button type="submit">Search</button>
         </form>
 
+        {% if result %}
         <div class="show-data">
             <div class="msg-about-us">
                 <p>You must include at least one keyword to match in the content. Keywords must be at least 3 characters, and punctuation is ignored.</p>
                 <p><strong>We Suggest</strong></p>
             </div>
+
+
             <div class="show-result-to-ui">
             <div class="left-sidebar">
                 <div class="words">
                     <img src="{{ url_for('static', filename='images/dictionary-icon.png') }}" alt="book icon">
-                    <p class="word">Word</p>
-                    <p class="partOfSpeech">partofspeech</p>
+                    <p class="word">{{ result.word }}</p>
+                    <p class="partOfSpeech">{{ result.part_of_speech }}</p>
                 </div>
                 <div class="sound-and-symbol">
                   
@@ -34,14 +37,14 @@ Home
                     onclick="document.getElementById('word-audio').play();">
 
                     <audio id="word-audio">
-                        <source src="https://api.dictionaryapi.dev/media/pronunciations/en/science-1-ca.mp3" type="audio/mpeg">
+                        <source src="{{ result.audio_url }}" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
-                    <p>/symbol/</p>
+                    <p>{{ result.ipa }}</p>
                     
                 </div>
                 <div class="defination">
-                    <p>defination: this is the defination of the word</p>
+                    <p>{{ result.definition }}</p>
                 </div>
 
                 <div class="more-information">
@@ -84,8 +87,8 @@ Home
             </div>
         </div>
         </div>
-       
-        <h1><a href="https://library.harvard.edu/search?keywords=a">Harvard Library</a></h1>
+       {% endif %}
+        <!-- <h1><a href="https://library.harvard.edu/search?keywords=a">Harvard Library</a></h1> -->
        
     </div>
 

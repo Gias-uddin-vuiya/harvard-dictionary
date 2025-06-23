@@ -130,9 +130,35 @@ form button:hover {
     margin-top: 20px;
 }
 .sound-and-symbol img {
-    color: darkred;
     width: 30px;
     height: 30px;
     cursor: pointer;
+    margin-left: 30px;;
     margin-right: 10px;
+}
+
+.more-info ul {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.more-info ul li {
+    list-style: none;
+    border-right: 1px solid #6c757d;
+    padding: 5px 10px 5px 0;
+    font-weight: bold;
+    color: #e90949;
+}
+
+
+.defination{
+    margin: 20px 0;
+}
+/* testing information */
+
+.more-information #more-info{
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    
 }

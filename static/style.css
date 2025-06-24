@@ -101,7 +101,7 @@ form button:hover {
 
 .show-result-to-ui .left-sidebar .words {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: start;
 }
 
 .show-result-to-ui .left-sidebar img {
@@ -111,24 +111,27 @@ form button:hover {
 .show-result-to-ui .left-sidebar .word {
     margin-top: 3px;
     padding-left: 4px;
-    padding-right: 35px;
+    padding-right: 10px;
     font-size: 24px;
 }
 
 
 .show-result-to-ui .left-sidebar .partOfSpeech {
-    margin-top: 6px;
+    margin-top: 10px;
     padding-left: 0px;
     font-size: 17px;
     color: gray;
 }
 
 /* working with sound */
-.sound-and-symbol{
+.sound-and-symbol {
     display: flex;
+    justify-content: start;
     align-items: center;
     margin-top: 20px;
+    margin-left: -13px;
 }
+
 .sound-and-symbol img {
     width: 30px;
     height: 30px;

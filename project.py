@@ -1,10 +1,15 @@
 
 import requests
 import json
+from flask import Flask
 
+app = Flask(__name__)
 
 def main():
-    print("This is the main function of the project module.")
+    app.run(debug=True)
+
+if __name__ == "__main__":
+    main()
 
 
 

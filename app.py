@@ -36,3 +36,7 @@ def search():
     result = get_entry(word)  # Get word definition, etc.
     print(result)
     return render_template("home.html", word=word, result=result)
+
+@app.route("/register")
+def register():
+    return render_template("register.html")

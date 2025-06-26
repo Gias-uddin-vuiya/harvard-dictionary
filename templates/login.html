@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+    <div class="blank-and-design"></div>
+
+    <div class="container">
+        <div class="col-md-6 form-section">
+            <h4 class="mb-4">Sign in</h4>
+            <form>
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Email *" required>
+                </div>
+                <div class="mb-3">      
+                    <input type="password" class="form-control" placeholder="Password *" required>
+                </div>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                <p class="text-center mt-3">
+                    <a href="/register">Don't have an account?</a>
+                </p>
+            </form>
+        </div>
+    </div>  
+{% endblock %}

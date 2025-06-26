@@ -1,7 +1,7 @@
 
 from flask import Flask, flash, redirect, render_template, session, request
 from flask_session import Session
-from project import get_entry, register_user
+from project import get_entry, register_user, login_user
 # configure application
 app = Flask(__name__)
 
@@ -65,9 +65,29 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    """Render the login page."""
+    if request.method == "POST":
+        email = request.form.get("email").strip()
+        password = request.form.get("password").strip()
+        print(f"Logging in user: {email}")
+
+        if not email or not password:
+            flash("Email and password are required.", "error")
+            return redirect("/login")
+
+        result = login_user(email, password)
+
+        if result["status"] == "success":
+            session["user_id"] = result["user_id"]
+            flash("Login successful!", "success")
+            return redirect("/")
+        else:
+            flash(result.get("message", "Login failed."), "error")
+            return redirect("/login")
     return render_template("login.html")
+
 
 @app.route("/logout")
 def logout():

@@ -76,3 +76,21 @@ def register_user(fname, lname, email, password):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
+
+def login_user(email, password):
+    try:
+        conn = sqlite3.connect("dictionary.db")
+        conn.row_factory = sqlite3.Row  # Optional: access rows by column name
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
+        user = cur.fetchone()
+        conn.close()
+
+        if user:
+            return {"status": "success", "user_id": user["id"]}
+        else:
+            return {"status": "error", "message": "Invalid email or password."}
+
+    except Exception as e:
+        return {"status": "error", "message": str(e)}

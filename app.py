@@ -69,3 +69,9 @@ def register():
 def login():
     return render_template("login.html")
 
+@app.route("/logout")
+def logout():
+    """Log out the user."""
+    session.clear()
+    flash("Logged out successfully.", "success")
+    return redirect("/")    

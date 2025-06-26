@@ -46,10 +46,15 @@ def register():
         lname = request.form.get("lname").strip()
         email = request.form.get("email").strip()
         password = request.form.get("password").strip()
-        print(f"Registering user: {fname} {lname}, Email: {email}")
+        confirm_password = request.form.get("confirm_password").strip()
+        
 
         if not fname or not lname or not email or not password:
             flash("All fields are required.", "error")
+            return redirect("/register")
+        
+        if password != confirm_password:
+            flash("Passwords do not match.", "error")
             return redirect("/register")
 
         result = register_user(fname, lname, email, password)
@@ -71,7 +76,7 @@ def login():
     if request.method == "POST":
         email = request.form.get("email").strip()
         password = request.form.get("password").strip()
-        print(f"Logging in user: {email}")
+        print(f"Logging in user: {email, password}")
 
         if not email or not password:
             flash("Email and password are required.", "error")

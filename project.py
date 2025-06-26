@@ -3,6 +3,8 @@ import requests
 import json
 from flask import Flask
 import sqlite3
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 app = Flask(__name__)
 
@@ -59,10 +61,12 @@ def register_user(fname, lname, email, password):
         conn = sqlite3.connect("dictionary.db")
         cur = conn.cursor()
 
+        hash_password = generate_password_hash(password)
+
         cur.execute("""
             INSERT INTO users (fname, lname, email, password)
             VALUES (?, ?, ?, ?)
-        """, (fname, lname, email, password))
+        """, (fname, lname, email, hash_password))
         
         conn.commit()
 
@@ -82,12 +86,12 @@ def login_user(email, password):
         conn = sqlite3.connect("dictionary.db")
         conn.row_factory = sqlite3.Row  # Optional: access rows by column name
         cur = conn.cursor()
-
-        cur.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
+      
+        cur.execute("SELECT * FROM users WHERE email = ? ", (email, ))
         user = cur.fetchone()
         conn.close()
 
-        if user:
+        if user and check_password_hash(user["password"], password):
             return {"status": "success", "user_id": user["id"]}
         else:
             return {"status": "error", "message": "Invalid email or password."}

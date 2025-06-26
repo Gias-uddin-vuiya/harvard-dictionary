@@ -37,6 +37,11 @@ def search():
     print(result)
     return render_template("home.html", word=word, result=result)
 
+@app.route("/topics")
+def topics():
+    """Render the topics page."""
+    return render_template("topics.html")
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():

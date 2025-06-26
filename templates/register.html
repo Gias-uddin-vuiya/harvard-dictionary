@@ -5,10 +5,44 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container">
-        <div class="blank-and-design"></div>
-        <div class="registration-form"></div>
-        <div class="blank-and-design"></div>
+    <div class="blank-and-design"></div>
 
+    <div class="container">
+        <div class="col-md-6 form-section">
+            <h4 class="mb-4">Sign up</h4>
+            <form>
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Email *" required>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="First name *" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Last name *" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <input type="password" class="form-control" placeholder="Password *" required>
+                    </div>
+                    <div class="col">
+                        <input type="password" class="form-control" placeholder="Confirm password *" required>
+                    </div>
+                </div>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                    <label class="form-check-label" for="agreeTerms">I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Notice</a> *</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign up</button>
+                <p class="text-center mt-3">
+                    <a href="/login">Have an account already?</a>
+                </p>
+            
+            </form>
+        </div> 
     </div>
+
+    <div class="blank-and-design"></div>
+    
 {% endblock %}

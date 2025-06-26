@@ -2,6 +2,7 @@
 import requests
 import json
 from flask import Flask
+import sqlite3
 
 app = Flask(__name__)
 
@@ -52,10 +53,26 @@ def get_entry(word):
             "message": response.text
         }
 
-def translate_bengali(word):
-    # Call LibreTranslate API
-    pass
 
-def mark_word(word, status, memory):
-    # Mark as memorized or ignored
-    pass
+def register_user(fname, lname, email, password):
+    try:
+        conn = sqlite3.connect("dictionary.db")
+        cur = conn.cursor()
+
+        cur.execute("""
+            INSERT INTO users (fname, lname, email, password)
+            VALUES (?, ?, ?, ?)
+        """, (fname, lname, email, password))
+        
+        conn.commit()
+
+        # Fetch the last inserted user's id
+        user_id = cur.lastrowid
+        conn.close()
+
+        return {"status": "success", "user_id": user_id}
+    except sqlite3.IntegrityError as e:
+        return {"status": "error", "message": f"Email already exists or integrity error: {e}"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+

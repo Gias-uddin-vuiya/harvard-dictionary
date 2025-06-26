@@ -1,7 +1,7 @@
 
 from flask import Flask, flash, redirect, render_template, session, request
 from flask_session import Session
-from project import get_entry 
+from project import get_entry, register_user
 # configure application
 app = Flask(__name__)
 
@@ -38,10 +38,34 @@ def search():
     return render_template("home.html", word=word, result=result)
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
+    """Register a new user."""
+    if request.method == "POST":
+        fname = request.form.get("fname").strip()
+        lname = request.form.get("lname").strip()
+        email = request.form.get("email").strip()
+        password = request.form.get("password").strip()
+        print(f"Registering user: {fname} {lname}, Email: {email}")
+
+        if not fname or not lname or not email or not password:
+            flash("All fields are required.", "error")
+            return redirect("/register")
+
+        result = register_user(fname, lname, email, password)
+
+        if result["status"] == "success":
+            # session["user_id"] = result["user_id"]
+            flash("Registration successful!", "success")
+            return redirect("/login")
+        else:
+            flash(result.get("message", "Registration failed."), "error")
+            return redirect("/register")
+
     return render_template("register.html")
+
 
 @app.route("/login")
 def login():
     return render_template("login.html")
+

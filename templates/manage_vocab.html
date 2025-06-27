@@ -12,11 +12,11 @@
             <h4 class="mb-4">Add New Topic</h4>
             <form method="POST" action="/add_topic">
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="topic_name" placeholder="Topic name *" required>
+                    <input type="text" class="form-control" name="topic_name" placeholder="Topic name *" autocapitalize="off" required>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <input type="text" class="form-control" name="image_url" placeholder="image *" required>
+                        <input type="text" class="form-control" name="image_url" placeholder="image *" autocapitalize="off" required>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">add topic</button>
@@ -34,34 +34,34 @@
                 </select>
 
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="word" placeholder="Word *" required>
+                    <input type="text" class="form-control" name="word" placeholder="Word *" autocapitalize="off" required>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <input type="text" class="form-control" name="difinition" placeholder="difinition" required>
+                        <input type="text" class="form-control" name="difinition" placeholder="difinition" autocapitalize="off" required>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" name="part_of_speech" placeholder="part_of_speech" required>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <input type="text" class="form-control" name="ipa_us" placeholder="ipa_us " required>
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" name="ipa_uk" placeholder="ipa_uk" required>
+                        <input type="text" class="form-control" name="part_of_speech" placeholder="part_of_speech" autocapitalize="off" required>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <input type="text" class="form-control" name="sound_us" placeholder="sound_us" required>
+                        <input type="text" class="form-control" name="ipa_us" placeholder="ipa_us " autocapitalize="off" required>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" name="sound_uk" placeholder="sound_uk" required>
+                        <input type="text" class="form-control" name="ipa_uk" placeholder="ipa_uk" autocapitalize="off" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <input type="text" class="form-control" name="sound_us" placeholder="sound_us" autocapitalize="off" required>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="sound_uk" placeholder="sound_uk" autocapitalize="off" required>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="level" placeholder="level (A1, A2, B1, etc.)" required>
+                    <input type="text" class="form-control" name="level" placeholder="level (A1, A2, B1, etc.)" autocapitalize="off" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">add word</button>
             </form>

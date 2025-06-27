@@ -37,6 +37,14 @@ def search():
     print(result)
     return render_template("home.html", word=word, result=result)
 
+
+@app.route("/manage_vocab")
+def manage_vocab():
+    """Render the manage vocabulary page."""
+    # Here you would typically fetch the user's vocabulary from the database
+    # For now, we'll just return a placeholder
+    return render_template("manage_vocab.html")
+
 @app.route("/topics")
 def topics():
     """Render the topics page."""

@@ -74,6 +74,25 @@ def add_topic(name, image):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
+def add_word(topics_id, word, difinition, part_of_speech, ipa_us, ipa_uk, sound_us, sound_uk, level):
+    try:
+        conn = sqlite3.connect("dictionary.db")
+        cur = conn.cursor()
+
+        cur.execute("""
+            INSERT INTO vocabulary (topic_id, word, difinition, part_of_speech, ipa_us, ipa_uk, sound_us, sound_uk, level)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (topics_id, word, difinition, part_of_speech, ipa_us, ipa_uk, sound_us, sound_uk, level))
+        
+        conn.commit()
+        conn.close()
+
+        return {"status": "success", "message": f"Word '{word}' added successfully."}
+    except sqlite3.IntegrityError as e:
+        return {"status": "error", "message": f"Word already exists or integrity error: {e}"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 def register_user(fname, lname, email, password):
     try:
         conn = sqlite3.connect("dictionary.db")

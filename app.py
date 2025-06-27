@@ -2,7 +2,7 @@
 from flask import Flask, flash, redirect, render_template, session, request
 from flask_session import Session
 import sqlite3
-from project import get_entry, register_user, login_user, add_topic
+from project import get_entry, register_user, login_user, add_topic, add_word
 # configure application
 app = Flask(__name__)
 
@@ -55,7 +55,7 @@ def manage_vocab():
 
 
 @app.route("/add_topic", methods=["POST"])
-def add():
+def add_topic_name():
     """Render the manage vocabulary page."""
     if request.method == "POST":
         name = request.form.get("topic_name").strip()
@@ -69,6 +69,33 @@ def add():
             flash(f"Error adding topic: {result.get('message', 'Unknown error')}", "error")
             return redirect("/manage_vocab")
         return redirect("/manage_vocab")
+
+@app.route('/add_word', methods=['POST'])
+def add_words():
+    if request.method == "POST":
+        topics_id = request.form.get('topic_id').strip()
+        word = request.form.get('word').strip()
+        difinition = request.form.get('difinition').strip()
+        part_of_speech = request.form.get('part_of_speech').strip()
+        ipa_us = request.form.get('ipa_us').strip()
+        ipa_uk = request.form.get('ipa_uk').strip()
+        sound_us = request.form.get('sound_us').strip()
+        sound_uk = request.form.get('sound_uk').strip()
+        level = request.form.get('level').strip()
+
+        if not word:
+            flash("Word is required.", "error")
+            return redirect("/manage_vocab") 
+        # Check if the word already exists
+        result = add_word(topics_id, word, difinition, part_of_speech, ipa_us, ipa_uk, sound_us, sound_uk, level)
+       
+        if result["status"] == "success":
+            flash(f"Word '{word}' added successfully!", "success")
+            return redirect("/manage_vocab")
+        else:
+            flash(f"Error adding word: {result.get('message', 'Unknown error')}", "error")
+            return redirect("/manage_vocab")    
+
 
 @app.route("/topics")
 def topics():

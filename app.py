@@ -1,6 +1,7 @@
 
 from flask import Flask, flash, redirect, render_template, session, request
 from flask_session import Session
+import sqlite3
 from project import get_entry, register_user, login_user, add_topic
 # configure application
 app = Flask(__name__)
@@ -37,11 +38,20 @@ def search():
     print(result)
     return render_template("home.html", word=word, result=result)
 
+
 @app.route("/manage_vocab", methods=["GET"])
 def manage_vocab():
-    """Render the manage vocabulary page."""
-
-    return render_template("manage_vocab.html")
+    # get topics 
+    connect = sqlite3.connect("dictionary.db")
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM topics")
+    topics = cursor.fetchall()
+    # format topics
+    topics = [{"id": topic[0], "name": topic[1], "image": topic[2]} for topic in topics]
+  
+    
+    connect.close()
+    return render_template("manage_vocab.html", topics=topics)
 
 
 @app.route("/add_topic", methods=["POST"])

@@ -29,7 +29,7 @@
                 <select name="topic_id" required> 
                     <option value="" disabled selected>Select a topic</option>
                     {% for topic in topics %}
-                    <option value="{{ topic['id'] }}">{{ topic['name'] }}</option>
+                    <option value="{{ topic['id'] }}" style="color: black;">{{ topic['name'] }}</option>
                     {% endfor %}
                 </select>
 

@@ -29,7 +29,6 @@
                 {% if session["user_id"] %}
                     <ul class="navbar-nav me-auto mt-2">
                         <li class="nav-item"><a class="nav-link">Deshbord</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/manage_vocab">Manage Vocabulary</a></li>
                         <li class="nav-item"><a class="nav-link" href="/topics">Topics</a></li>
                     </ul>
                     <ul class="navbar-nav ms-auto mt-2">
@@ -37,7 +36,7 @@
                     </ul>
                 {% else %}
                 <ul class="navbar-nav ms-auto mt-2"> 
-                    <!-- <li class="nav-item"><a class="nav-link" href="/templates">Templates</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="/manage_vocab">Manage Vocabulary</a></li>
                 </ul>
                     <ul class="navbar-nav ms-auto mt-2">
                         <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>

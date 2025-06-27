@@ -98,9 +98,18 @@ def add_words():
 
 
 @app.route("/topics")
-def topics():
+def show_topics():
     """Render the topics page."""
-    return render_template("topics.html")
+    conn = sqlite3.connect("dictionary.db")
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM topics")
+    topics = cur.fetchall()
+    conn.close()
+
+    return render_template("topics.html", topics=topics)
+
 
 
 @app.route("/register", methods=["GET", "POST"])

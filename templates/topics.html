@@ -10,5 +10,20 @@
             <h2>Topics</h2>
     <p>Build your topic vocabulary with these mini-dictionaries, which are groups of words related to common subject areas. Choose a topic area from the list below to get started.Build your topic vocabulary with these mini-dictionaries, which are groups of words related to common subject areas. Choose a topic area from the list below to get started.</p>
         </div>
+
+    <div class="row">
+    {% for topic in topics %}
+        <div class="col-md-4 mb-4">
+        <div class="card text-center">
+            <img src="{{ topic.image }}" class="card-img-top" alt="{{ topic.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ topic.name }}</h5>
+                <a href="{{ url_for('show_topic_word', topic_id=topic.id) }}" class="btn btn-primary">View Vocabulary</a>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+    
     </div>
 {% endblock %}

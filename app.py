@@ -1,7 +1,7 @@
 
 from flask import Flask, flash, redirect, render_template, session, request
 from flask_session import Session
-from project import get_entry, register_user, login_user
+from project import get_entry, register_user, login_user, add_topic
 # configure application
 app = Flask(__name__)
 
@@ -37,13 +37,28 @@ def search():
     print(result)
     return render_template("home.html", word=word, result=result)
 
-
-@app.route("/manage_vocab")
+@app.route("/manage_vocab", methods=["GET"])
 def manage_vocab():
     """Render the manage vocabulary page."""
-    # Here you would typically fetch the user's vocabulary from the database
-    # For now, we'll just return a placeholder
+
     return render_template("manage_vocab.html")
+
+
+@app.route("/add_topic", methods=["POST"])
+def add():
+    """Render the manage vocabulary page."""
+    if request.method == "POST":
+        name = request.form.get("topic_name").strip()
+        image = request.form.get("image_url").strip()
+        if not name:
+            flash("Topic name is required.", "error")
+            return redirect("/manage_vocab")
+        
+        result = add_topic(name, image)
+        if result["status"] != "success":
+            flash(f"Error adding topic: {result.get('message', 'Unknown error')}", "error")
+            return redirect("/manage_vocab")
+        return redirect("/manage_vocab")
 
 @app.route("/topics")
 def topics():

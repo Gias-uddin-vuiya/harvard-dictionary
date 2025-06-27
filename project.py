@@ -55,6 +55,24 @@ def get_entry(word):
             "message": response.text
         }
 
+def add_topic(name, image):
+    try:
+        conn = sqlite3.connect("dictionary.db")
+        cur = conn.cursor()
+
+        cur.execute("""
+            INSERT INTO topics (name, image)
+            VALUES (?, ?)
+        """, (name, image))
+        
+        conn.commit()
+        conn.close()
+
+        return {"status": "success", "message": f"Topic '{name}' added successfully."}
+    except sqlite3.IntegrityError as e:
+        return {"status": "error", "message": f"Topic already exists or integrity error: {e}"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
 def register_user(fname, lname, email, password):
     try:

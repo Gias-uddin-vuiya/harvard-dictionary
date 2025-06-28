@@ -1,10 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=Agu+Display&family=Angkor&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+DK+Loopet:wght@100..400&family=Playwrite+MX+Guides&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Abel&family=Agu+Display&family=Angkor&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+DK+Loopet:wght@100..400&family=Playwrite+MX+Guides&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif;
+    color: #1c1c1c;
+}
+
+h1, h2, h3 {
+  font-family: 'Merriweather', serif;
+}
+
+
+
+
 /* navbar design */
+
+.navbar-nav .nav-item {
+    padding: 10px 15px;
+}
+
+.navbar-nav .nav-item:hover {
+    background-color: #f8f9fa;
+    text-decoration: solid underline;
+    border-radius: 5px;
+}
+
 .navbar-brand img{
     width: 110px;
     margin-left: 10px;
 }
 
+.nav-right-side {
+    padding: 10px;
+    background: white url(/static/images/dots.png) top center repeat;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+/* Navbar END */
 .search-msg{
     width: 100%;
     height: 140px;

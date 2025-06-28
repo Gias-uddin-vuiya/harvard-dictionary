@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ topic.name }} Vocabulary
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+    <h2 class="my-4 text-center">Vocabulary: {{ topic.name }}</h2>
+    <a href="/topics" class="btn btn-secondary mb-3">← Back to Topics</a>
+
+    <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+        <th>Word</th>
+        <th>Definition</th>
+        <th>Part of Speech</th>
+        <th>IPA (US)</th>
+        <th>IPA (UK)</th>
+        <th>Level</th>
+        <th>Audio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for word in words %}
+        <tr>
+        <td>{{ word.word }}</td>
+        <td>{{ word.difinition or word.definition }}</td>
+        <td>{{ word.part_of_speech }}</td>
+        <td>{{ word.ipa_us }}</td>
+        <td>{{ word.ipa_uk }}</td>
+        <td>{{ word.level }}</td>
+        <td>
+            {% if word.sound_us %}
+            <audio controls src="{{ url_for('static', filename='sounds/' ~ word.sound_us) }}"></audio>
+            {% endif %}
+            {% if word.sound_uk %}
+            <audio controls src="{{ url_for('static', filename='sounds/' ~ word.sound_uk) }}"></audio>
+            {% endif %}
+        </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    </div>
+{% endblock %}

@@ -110,7 +110,26 @@ def show_topics():
 
     return render_template("topics.html", topics=topics)
 
+@app.route("/topic/<int:topic_id>")
+def show_topic_word(topic_id):
+    """Render a specific topic page."""
+    conn = sqlite3.connect("dictionary.db")
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
 
+    cur.execute("SELECT * FROM topics WHERE id = ?", (topic_id,))
+    topic = cur.fetchone()
+    
+    if not topic:
+        flash("Topic not found.", "error")
+        return redirect("/topics")
+
+    cur.execute("SELECT * FROM vocabulary WHERE topic_id = ?", (topic_id,))
+    words = cur.fetchall()
+    
+    conn.close()
+
+    return render_template("topic_words.html", topic=topic, words=words)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():

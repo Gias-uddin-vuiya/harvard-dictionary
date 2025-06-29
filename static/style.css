@@ -276,7 +276,7 @@ h1, h2, h3 {
     margin: 20px 0 10px 0;
     padding: 10px;
     /* background-color: #c0d9f3; */
-    background-color: #e6abab;
+    /* background-color: #e6abab; */
 }
 
 .card {
@@ -294,4 +294,24 @@ h1, h2, h3 {
     height: 180px;
     object-fit: cover;
     border-radius: 5px;
+}
+
+/* add desing for topic card */
+.card:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline-danger {
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+    /* background-color: #c82333; */
+    background-color:  #A51C30;;
+    color: #fff;
+    transform: scale(1.05);
 }

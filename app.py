@@ -47,32 +47,23 @@ def search():
     print(result)
     return render_template("home.html", word=word, result=result)
 
-@app.route("/add_vocabulary", methods=["GET"])
+@app.route("/add_vocabulary")
 def add_vocabulary():
-    """Render the manage vocabulary page."""
-    connect = sqlite3.connect("dictionary.db")
-    cursor = connect.cursor()
-    cursor.execute("SELECT * FROM topics")
-    topics = cursor.fetchall()
-    # format topics
-    topics = [{"id": topic[0], "name": topic[1], "image": topic[2]} for topic in topics]
-    
-    connect.close()
-    return render_template("add_vocabulary.html", topics=topics) 
+    """Render the add vocabulary page."""
+    conn = sqlite3.connect("dictionary.db") 
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor() 
+    cur.execute("SELECT * FROM topics")
+    topics = cur.fetchall()
+    conn.close()
+    if not topics:
+        flash("No topics available. Please add a topic first.", "warning")
+        return redirect("/add_topics")  
+    return render_template("add_vocabulary.html", topics=topics)    
 
-@app.route("/add_topics", methods=["GET"])
+@app.route("/add_topics")
 def add_topics():
-    # get topics 
-    connect = sqlite3.connect("dictionary.db")
-    cursor = connect.cursor()
-    cursor.execute("SELECT * FROM topics")
-    topics = cursor.fetchall()
-    # format topics
-    topics = [{"id": topic[0], "name": topic[1], "image": topic[2]} for topic in topics]
-  
-    
-    connect.close()
-    return render_template("add_topics.html", topics=topics)
+    return render_template("add_topics.html", )
 
 
 @app.route("/add_topic", methods=["POST"])
@@ -83,13 +74,14 @@ def add_topic_name():
         image = request.form.get("image_url").strip()
         if not name:
             flash("Topic name is required.", "error")
-            return redirect("/manage_vocab")
+            return redirect("/add_topics")
         
         result = add_topic(name, image)
         if result["status"] != "success":
             flash(f"Error adding topic: {result.get('message', 'Unknown error')}", "error")
-            return redirect("/manage_vocab")
-        return redirect("/manage_vocab")
+            return redirect("/add_topics")
+        return redirect("/add_topics")
+
 
 @app.route('/add_word', methods=['POST'])
 def add_words():
@@ -106,16 +98,16 @@ def add_words():
 
         if not word:
             flash("Word is required.", "error")
-            return redirect("/manage_vocab") 
+            return redirect("/add_vocabulary") 
         # Check if the word already exists
         result = add_word(topics_id, word, difinition, part_of_speech, ipa_us, ipa_uk, sound_us, sound_uk, level)
        
         if result["status"] == "success":
             flash(f"Word '{word}' added successfully!", "success")
-            return redirect("/manage_vocab")
+            return redirect("/add_vocabulary")
         else:
             flash(f"Error adding word: {result.get('message', 'Unknown error')}", "error")
-            return redirect("/manage_vocab")    
+            return redirect("/add_vocabulary")    
 
 
 @app.route("/topics")

@@ -47,8 +47,8 @@ def search():
     print(result)
     return render_template("home.html", word=word, result=result)
 
-@app.route("/manage_vocabulary", methods=["GET"])
-def manage_vocabulary():
+@app.route("/add_vocabulary", methods=["GET"])
+def add_vocabulary():
     """Render the manage vocabulary page."""
     connect = sqlite3.connect("dictionary.db")
     cursor = connect.cursor()
@@ -58,10 +58,10 @@ def manage_vocabulary():
     topics = [{"id": topic[0], "name": topic[1], "image": topic[2]} for topic in topics]
     
     connect.close()
-    return render_template("manage_vocabulary.html", topics=topics) 
+    return render_template("add_vocabulary.html", topics=topics) 
 
-@app.route("/manage_topic", methods=["GET"])
-def manage_topic():
+@app.route("/add_topics", methods=["GET"])
+def add_topics():
     # get topics 
     connect = sqlite3.connect("dictionary.db")
     cursor = connect.cursor()
@@ -72,7 +72,7 @@ def manage_topic():
   
     
     connect.close()
-    return render_template("manage_topic.html", topics=topics)
+    return render_template("add_topics.html", topics=topics)
 
 
 @app.route("/add_topic", methods=["POST"])

@@ -10,9 +10,50 @@ h1, h2, h3 {
   font-family: 'Merriweather', serif;
 }
 
+/* ---------===========------------- */
+/* form desing css start here. */
+.manage-vocab-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+}
 
+.form-section {
+    background-color: #f8f9fa;
+    border-left: 5px solid #A51C30;
+    font-family: 'Segoe UI', 'Georgia', serif;
+}
 
+.form-section h3 {
+    font-family: 'Georgia', serif;
+    color: #A51C30; 
+}
 
+.form-section p {
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+}
+
+.form-section .form-control:focus, .form-select:focus {
+    border-color: #A51C30;
+    box-shadow: 0 0 0 0.2rem rgba(165, 28, 48, 0.25);
+}
+
+.form-section .form-label{
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #A51C30 !important;
+    border: none;
+}
+
+.submit-btn {
+    background-color: #A51C30 !important;
+    color: white !important;
+    font-weight: 500;
+}
 /* navbar design */
 
 .navbar-nav .nav-item {

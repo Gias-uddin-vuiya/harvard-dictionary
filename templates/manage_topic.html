@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Topics
+{% endblock %}
+
+{% block main %}
+    <div class="blank-and-design"></div>
+    <div class="container manage-vocab-form mt-5 mb-5">
+        
+    <div class="col-md-6 form-section p-4 rounded shadow">
+    
+    <h3 class="mb-3">Add a New Dictionary Topic</h3>
+    <p class="mb-4">
+        <strong>This form is for Harvard Dictionary developers to contribute new academic topics.</strong>
+    </p>
+
+    <form method="POST" action="/add_topic">
+        <div class="mb-3">
+            <label for="topic_name" class="form-label">Topic Name</label>
+            <input type="text" class="form-control" name="topic_name" id="topic_name" placeholder="e.g., Quantum Physics" required>
+        </div>
+        <div class="mb-3">
+            <label for="image_url" class="form-label">Image URL</label>
+            <input type="text" class="form-control" name="image_url" id="image_url" placeholder="Paste image link" required>
+        </div>
+        <button type="submit" class="btn submit-btn w-100">Add Topic</button>
+        <p class="text-center mt-3">
+            <a href="/manage_vocabulary">Add words to spacific topics</a>
+        </p>
+    </form>
+</div>
+</div>
+
+
+
+{% endblock %}

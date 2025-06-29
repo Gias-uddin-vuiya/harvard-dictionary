@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Manage Vocabulary
+{% endblock %}
+
+{% block main %}
+
+    <div class="blank-and-design"></div>
+    <div class="container  mt-5 mb-5">
+        <div class="col-md-8 form-section p-4 rounded shadow">
+        <h3 class="mb-3">Add New Vocabulary Word</h3>
+        <p class="mb-4">
+            <strong>Select a topic and enter a new word with its details. It will be added to the dictionary under the chosen topic.</strong>
+        </p>
+        <form method="POST" action="/add_word">
+            <div class="mb-3">
+                <label for="topic_id" class="form-label">Select Topic</label>
+                <select class="form-select" name="topic_id" id="topic_id" required>
+                    <option value="" disabled selected>Select a topic</option>
+                    {% for topic in topics %}
+                    <option value="{{ topic['id'] }}">{{ topic['name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="word">Word</label>
+                <input type="text" class="form-control" name="word" id="word" placeholder="e.g., Perspicacious" required>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label" for="difinition">Definition</label>
+                    <input type="text" class="form-control" name="difinition" id="difinition" placeholder="Meaning of the word" required>
+                </div>
+                <div class="col">
+                    <label class="form-label" for="part_of_speech">Part of Speech</label>
+                    <input type="text" class="form-control" name="part_of_speech" id="part_of_speech" placeholder="e.g., noun, verb" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label" for="ipa_us">IPA (US)</label>
+                    <input type="text" class="form-control" name="ipa_us" id="ipa_us" placeholder="e.g., /ˌpɜː.spɪˈkeɪ.ʃəs/" required>
+                </div>
+                <div class="col">
+                    <label class="form-label" for="ipa_uk">IPA (UK)</label>
+                    <input type="text" class="form-control" name="ipa_uk" id="ipa_uk" placeholder="e.g., /ˌpɜː.spɪˈkeɪ.ʃəs/" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label" for="sound_us">Sound (US)</label>
+                    <input type="text" class="form-control" name="sound_us" id="sound_us" placeholder="Audio URL for US pronunciation" required>
+                </div>
+                <div class="col">
+                    <label class="form-label" for="sound_uk">Sound (UK)</label>
+                    <input type="text" class="form-control" name="sound_uk" id="sound_uk" placeholder="Audio URL for UK pronunciation" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="level">Level</label>
+                <input type="text" class="form-control" name="level" id="level" placeholder="e.g., A1, B2, C1" required>
+            </div>
+
+            <button type="submit" class="btn submit-btn w-100" >Add Word</button>
+            <p class="text-center mt-3">
+                <a href="/manage_topic">Add words to spacific topics</a>
+            </p>
+        </form>
+    </div>
+    </div>
+{% endblock %}

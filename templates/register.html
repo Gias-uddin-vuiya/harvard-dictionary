@@ -7,8 +7,8 @@
 {% block main %}
     <div class="blank-and-design"></div>
 
-    <div class="container">
-        <div class="col-md-6 form-section">
+    <div class="container register-form mt-5 mb-5">
+        <div class="col-md-6 form-section p-4 rounded shadow">
             <h4 class="mb-4">Register</h4>
             <form method="POST" action="/register">
                 <div class="mb-3">
@@ -34,15 +34,15 @@
                     <input type="checkbox" class="form-check-input" id="agreeTerms" required>
                     <label class="form-check-label" for="agreeTerms">I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Notice</a> *</label>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Sign up</button>
-                <p class="text-center mt-3">
-                    <a href="/login">Have an account already?</a>
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+                <p class="mt-3" style="font-size: 15px;">
+                    Already part of the Harvard Dictionary? <a href="/login">Log in</a>.
                 </p>
             
             </form>
         </div> 
     </div>
 
-    <div class="blank-and-design"></div>
+
     
 {% endblock %}

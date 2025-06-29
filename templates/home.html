@@ -16,103 +16,108 @@ Home
             <button type="submit">Search</button>
         </form>
 
-        <div class="error-msg">
-            <!-- we will show error message later. -->
-        </div>
         {% if result %}
-        <div class="show-data">
-            <div class="msg-about-us">
-                <p><strong>Results:</strong></p>
+            {% if result.status == 'API Error 404' %}
+            <div class="error-msg">
+                <p>We couldn't find any matches for <strong>{{ word }}</strong>.</p>
+                <p>Please check your spelling or try a different word.</p>
             </div>
+            {% endif %}
+            {% if result.status == 'success' %}
+                <div class="show-data">
+                    <div class="msg-about-us">
+                        <p><strong>Results:</strong></p>
+                    </div>
 
 
-            <div class="show-result-to-ui">
-            <div class="left-sidebar">
-                <div class="words">
-                    <img src="{{ url_for('static', filename='images/dictionary-icon.png') }}" alt="book icon">
-                    <p class="word">{{ result.word }}</p>
-                    <p class="partOfSpeech">{{ result.part_of_speech }}</p>
-                </div>
-                <div class="sound-and-symbol">
-                  
-                    <img src="{{ url_for('static', filename='images/sound-icon.png') }}" alt="sound-icon"
-                    onclick="document.getElementById('word-audio').play();">
-
-                    <audio id="word-audio">
-                        <source src="{{ result.audio_url }}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                    <p>{{ result.ipa }}</p>
-                    
-                </div>
-                <div class="defination">
-                    <p>{{ result.definition }}</p>
-                </div>
-
-                <div class="more-information">
-                    <div class="accordion accordion-flush" id="more-info">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Examples
-                        </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-
-                            {% if result.examples %}
-                                {{ result.examples }}
-                            {% else %}
-                                No examples found.
-                            {% endif %}
-                           
+                    <div class="show-result-to-ui">
+                    <div class="left-sidebar">
+                        <div class="words">
+                            <img src="{{ url_for('static', filename='images/dictionary-icon.png') }}" alt="book icon">
+                            <p class="word">{{ result.word }}</p>
+                            <p class="partOfSpeech">{{ result.part_of_speech }}</p>
                         </div>
+                        <div class="sound-and-symbol">
+                        
+                            <img src="{{ url_for('static', filename='images/sound-icon.png') }}" alt="sound-icon"
+                            onclick="document.getElementById('word-audio').play();">
+
+                            <audio id="word-audio">
+                                <source src="{{ result.audio_url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <p>{{ result.ipa }}</p>
+                            
+                        </div>
+                        <div class="defination">
+                            <p>{{ result.definition }}</p>
+                        </div>
+
+                        <div class="more-information">
+                            <div class="accordion accordion-flush" id="more-info">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Examples
+                                </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+
+                                    {% if result.examples %}
+                                        {{ result.examples }}
+                                    {% else %}
+                                        No examples found.
+                                    {% endif %}
+                                
+                                </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                    Synonyms
+                                </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    {% if result.synonyms %}
+                                        {% for synonym in result.synonyms %}
+                                            <span class="synonym">{{ synonym }}</span>,
+                                        {% endfor %}
+                                    {% else %}
+                                        No synonyms found.
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    Antonyms
+                                </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    {% if result.antonyms %}
+                                        {% for antonym in result.antonyms %}
+                                            <span class="antonym">{{ antonym }}</span>,
+                                        {% endfor %}
+                                    {% else %}
+                                        No antonyms found.
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            Synonyms
-                        </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            {% if result.synonyms %}
-                                {% for synonym in result.synonyms %}
-                                    <span class="synonym">{{ synonym }}</span>,
-                                {% endfor %}
-                            {% else %}
-                                No synonyms found.
-                            {% endif %}
-                        </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            Antonyms
-                        </button>
-                        </h2>
-                        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            {% if result.antonyms %}
-                                {% for antonym in result.antonyms %}
-                                    <span class="antonym">{{ antonym }}</span>,
-                                {% endfor %}
-                            {% else %}
-                                No antonyms found.
-                            {% endif %}
-                        </div>
-                        </div>
-                    </div>
+                    <div class="right-sidebar">
+                        <p><strong>Other result</strong></p>
                     </div>
                 </div>
-            </div>
-            <div class="right-sidebar">
-                <p><strong>Other result</strong></p>
-            </div>
-        </div>
-        </div>  
+                </div>  
+            {% endif %}
        {% endif %}
         <!-- <h1><a href="https://library.harvard.edu/search?keywords=a">Harvard Library</a></h1> -->
        <!-- harvard graducate schools form https://apply.gsas.harvard.edu/account/register?r=/portal/apply_now -->

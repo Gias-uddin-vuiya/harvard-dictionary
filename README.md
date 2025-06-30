@@ -24,4 +24,62 @@
 
 --- 
 ## 🌐 Video link
-Check out the video presentation of the application [here](i_add_later)
+Check out the video presentation of Harvard Dictionary [click here](i_add_later)
+
+---
+
+
+## 🚀 Features & CS50P Compliance
+
+This project meets all the CS50P final project requirements and provides a practical, real-world application. Below is a breakdown of its core features and how it aligns with the course expectations:
+
+--- 
+
+### ✅ Python Requirements Fulfilled
+
+- `project.py` includes:
+  - A `main()` function (entry point of the program)
+  - 3+ custom functions: modular, reusable, and non-nested
+- `test_project.py` includes:
+  - Unit tests for each custom function using `pytest`
+- `requirements.txt` lists necessary dependencies (`Flask`, etc.)
+
+--- 
+
+### 📚 Dictionary Features (Public)
+
+- **Word Search**  
+  Search for any word and retrieve:
+  - Part of Speech
+  - IPA symbol
+  - Pronunciation (sound)
+  - Definitions
+  - Example sentences
+  - Synonyms and antonyms
+ 
+ --- 
+
+### 🔐 Authenticated User Features
+
+- **User Registration & Login System**  
+  Allows users to securely create accounts and log in.
+
+- **Topic-Based Vocabulary Learning**  
+  Users can:
+  - Browse vocabulary by topics (e.g., Science, History, Medicine)
+  - Click on a topic to view related words
+  - Search within a specific topic
+
+--- 
+
+### 🛠 Developer/Admin Features
+
+- **Add New Topics**  
+  Developers can create new vocabulary topics from a form interface.
+
+- **Add Words to Topics**  
+  Easily associate words with a topic and store them in the database.
+
+- All data is managed using **Flask**, **SQLite**, and **Python functions**, ensuring separation of logic and maintainability.
+
+

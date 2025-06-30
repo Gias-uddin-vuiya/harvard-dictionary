@@ -24,4 +24,4 @@
 
 --- 
 ## 🌐 Video link
-Check out the live application [here](i_add_later)
+Check out the video presentation of the application [here](i_add_later)

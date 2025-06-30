@@ -27,7 +27,7 @@
 Check out the video presentation of Harvard Dictionary [click here](i_add_later)
 
 ---
-
+```base
 harvard-dictionary/
 ├── 🐍 project.py              # Core logic and main() function
 ├── 🧪 test_project.py         # Unit tests for custom functions
@@ -48,7 +48,7 @@ harvard-dictionary/
 │   ├── style.css             # Custom CSS
 │   └── images/               # Image assets
 └── 🧠 flask_session/          # Flask session folder (if used)
-
+```
 
 ## 🚀 Features & CS50P Compliance
 

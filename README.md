@@ -28,6 +28,27 @@ Check out the video presentation of Harvard Dictionary [click here](i_add_later)
 
 ---
 
+harvard-dictionary/
+├── 🐍 project.py              # Core logic and main() function
+├── 🧪 test_project.py         # Unit tests for custom functions
+├── 🔥 app.py                 # Flask app runner (calls logic from project.py)
+├── 📄 requirements.txt        # Python dependencies
+├── 📄 README.md               # Project documentation
+├── 🗄️ dictionary.db           # SQLite database
+├── 📁 templates/              # HTML templates (Jinja2)
+│   ├── add_topics.html
+│   ├── add_vocabulary.html
+│   ├── home.html
+│   ├── layout.html
+│   ├── login.html
+│   ├── register.html
+│   ├── topic_words.html
+│   └── topics.html
+├── 🎨 static/                 # Static files
+│   ├── style.css             # Custom CSS
+│   └── images/               # Image assets
+└── 🧠 flask_session/          # Flask session folder (if used)
+
 
 ## 🚀 Features & CS50P Compliance
 

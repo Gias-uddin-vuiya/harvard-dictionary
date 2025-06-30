@@ -24,7 +24,7 @@
 
 --- 
 ## 🌐 Video link
-Check out the video presentation of Harvard Dictionary [click here](i_add_later)
+Check out the video presentation of Harvard Dictionary [click here](https://youtu.be/U8X7OWDzpXI)
 
 ---
 ```base
